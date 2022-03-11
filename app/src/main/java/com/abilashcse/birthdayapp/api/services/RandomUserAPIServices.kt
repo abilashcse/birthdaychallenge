@@ -1,9 +1,8 @@
-package com.abilashcse.birthdayapp.api
+package com.abilashcse.birthdayapp.api.services
 
+import com.abilashcse.birthdayapp.api.RandomUserResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RandomUserAPIServices {

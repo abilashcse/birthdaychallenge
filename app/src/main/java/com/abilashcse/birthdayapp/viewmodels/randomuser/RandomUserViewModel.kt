@@ -3,10 +3,9 @@ package com.abilashcse.birthdayapp.viewmodels.randomuser
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.abilashcse.birthdayapp.api.APICallback
 import com.abilashcse.birthdayapp.api.RandomUserResponse
-import com.abilashcse.birthdayapp.data.model.RandomUsersRepository
+import com.abilashcse.birthdayapp.data.repo.RandomUsersRepository
 import com.abilashcse.birthdayapp.data.model.User
 import com.abilashcse.birthdayapp.viewmodels.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

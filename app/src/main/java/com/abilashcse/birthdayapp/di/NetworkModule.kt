@@ -1,6 +1,6 @@
 package com.abilashcse.birthdayapp.di
 
-import com.abilashcse.birthdayapp.api.RandomUserAPIServices
+import com.abilashcse.birthdayapp.api.services.RandomUserAPIServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +18,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRandomUserAPIServices(retrofit: Retrofit): RandomUserAPIServices{
+    fun provideRandomUserAPIServices(retrofit: Retrofit): RandomUserAPIServices {
 
         val apiService = retrofit.create(
             RandomUserAPIServices::class.java

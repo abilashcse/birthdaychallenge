@@ -1,4 +1,4 @@
-package com.abilashcse.birthdayapp.data.model
+package com.abilashcse.birthdayapp.data.datasource
 
 import com.abilashcse.birthdayapp.api.APICallback
 import com.abilashcse.birthdayapp.api.RandomUserResponse

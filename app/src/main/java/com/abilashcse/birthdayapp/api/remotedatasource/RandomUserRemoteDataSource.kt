@@ -1,12 +1,16 @@
-package com.abilashcse.birthdayapp.api
+package com.abilashcse.birthdayapp.api.remotedatasource
 
-import com.abilashcse.birthdayapp.data.model.RandomUserDataSource
+import com.abilashcse.birthdayapp.api.APICallback
+import com.abilashcse.birthdayapp.api.RandomUserResponse
+import com.abilashcse.birthdayapp.api.services.RandomUserAPIServices
+import com.abilashcse.birthdayapp.data.datasource.RandomUserDataSource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class RandomUserRemoteDataSource @Inject constructor(private val service: RandomUserAPIServices) : RandomUserDataSource{
+class RandomUserRemoteDataSource @Inject constructor(private val service: RandomUserAPIServices) :
+    RandomUserDataSource {
     private var call: Call<RandomUserResponse>?= null
 
     override fun getRandomUsers(competitionId: Int, callback: APICallback<RandomUserResponse>) {
