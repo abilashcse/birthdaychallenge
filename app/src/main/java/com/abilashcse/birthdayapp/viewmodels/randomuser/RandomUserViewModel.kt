@@ -1,6 +1,9 @@
 package com.abilashcse.birthdayapp.viewmodels.randomuser
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.abilashcse.birthdayapp.api.APICallback
@@ -12,14 +15,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class RandomUserViewModel @Inject constructor(var repository: RandomUsersRepository): BaseViewModel() {
-    private val _randomUsers= MutableLiveData<List<User>>().apply { value = emptyList() }
+class RandomUserViewModel @Inject constructor(var repository: RandomUsersRepository) :
+    BaseViewModel() {
+    private val _randomUsers = MutableLiveData<List<User>>().apply { value = emptyList() }
     val randomUsers: LiveData<List<User>> = _randomUsers
-
 
     fun getRandomUsers(count: Int) {
         _isViewLoading.value = true
-        repository.getStandings(count, object : APICallback<RandomUserResponse> {
+        repository.getRandomUsers(count, object : APICallback<RandomUserResponse> {
 
             override fun onSuccess(data: RandomUserResponse) {
                 Log.d("Test", "data = ${data.results}")

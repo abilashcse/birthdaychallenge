@@ -7,7 +7,8 @@ import retrofit2.http.Query
 
 interface RandomUserAPIServices {
     @GET(".")
-    fun dateOfBirth(@Query("results")results: Int,
-                    @Query("seed") seed: String = "chalkboard",
+    fun dateOfBirth(
+        @Query("results") results: Int,
+        @Query("seed") seed: String = "chalkboard",
     ): Call<RandomUserResponse>
 }

@@ -11,11 +11,11 @@ import javax.inject.Inject
 
 class RandomUserRemoteDataSource @Inject constructor(private val service: RandomUserAPIServices) :
     RandomUserDataSource {
-    private var call: Call<RandomUserResponse>?= null
+    private var call: Call<RandomUserResponse>? = null
 
     override fun getRandomUsers(competitionId: Int, callback: APICallback<RandomUserResponse>) {
         call = service.dateOfBirth(1000)
-        call?.enqueue(object :Callback<RandomUserResponse> {
+        call?.enqueue(object : Callback<RandomUserResponse> {
             override fun onResponse(
                 call: Call<RandomUserResponse>,
                 response: Response<RandomUserResponse>

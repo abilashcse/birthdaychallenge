@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HBD</string>
+    <string name="header_title">Birthdays</string>
 </resources>

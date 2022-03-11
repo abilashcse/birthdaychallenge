@@ -14,12 +14,13 @@ import javax.inject.Singleton
 object RandomUserModule {
     @Provides
     @Singleton
-    fun provideRandomUserDataSource(randomUserAPIService: RandomUserAPIServices) : RandomUserRemoteDataSource {
+    fun provideRandomUserDataSource(randomUserAPIService: RandomUserAPIServices): RandomUserRemoteDataSource {
         return RandomUserRemoteDataSource(randomUserAPIService)
     }
+
     @Provides
     @Singleton
-    fun provideStandingsRepository(randomUserDataSource: RandomUserRemoteDataSource): RandomUsersRepository {
+    fun provideRandomUserRepository(randomUserDataSource: RandomUserRemoteDataSource): RandomUsersRepository {
         return RandomUsersRepository(randomUserDataSource)
     }
 }

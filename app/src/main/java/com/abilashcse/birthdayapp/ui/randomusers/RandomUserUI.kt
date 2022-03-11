@@ -7,8 +7,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.abilashcse.birthdayapp.viewmodels.randomuser.RandomUserViewModel
 
 @Composable
-fun RandomUserUI(name: String,
-                 viewModel: RandomUserViewModel =  hiltViewModel() ){
+fun RandomUserUI(
+    name: String,
+    viewModel: RandomUserViewModel = hiltViewModel()
+) {
     Text(text = "Hello $name!")
     viewModel.getRandomUsers(1000)
 }
@@ -17,5 +19,5 @@ fun RandomUserUI(name: String,
 @Preview(showBackground = true)
 @Composable
 fun RandomUserPreview() {
-   RandomUserUI(name = "Team")
+    RandomUserUI(name = "Team")
 }

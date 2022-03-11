@@ -10,6 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 //https://randomuser.me/api/?results=1000&seed=chalkboard&inc=name,dob
 @InstallIn(SingletonComponent::class)
 @Module
