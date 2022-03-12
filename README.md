@@ -32,5 +32,6 @@ This repository contains a kotlin project based on MVVM architecture.
 ## What more can be done.
 
 * Display users having birthdays today on a separate section
-* Display upcoming birthday on a separate section
+* Display upcoming birthdays on a separate section
 * Set a reminder for upcoming birthdays
+* Showing birthday in a calendar so that a user can see the birthdays in each month
