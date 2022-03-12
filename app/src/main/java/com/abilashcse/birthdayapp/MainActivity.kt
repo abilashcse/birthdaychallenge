@@ -142,13 +142,13 @@ fun UserRow(user: User, navController: NavHostController?) {
 @Preview(showBackground = true)
 @Composable
 fun ComposablePreview() {
-    var users: MutableList<User> = ArrayList()
+    val users: MutableList<User> = ArrayList()
     val date = Date()
-    var user1 = User(
+    val user1 = User(
         name = Name(title = "Mr", first = "User", last = "One"),
         dob = DOB(date = date, age = 23)
     )
-    var user2 = User(
+    val user2 = User(
         name = Name(title = "Mr", first = "User", last = "Two"),
         dob = DOB(date = date, age = 23)
     )
