@@ -3,6 +3,7 @@ package com.abilashcse.birthdayapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -24,19 +25,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.abilashcse.birthdayapp.data.model.DOB
-import com.abilashcse.birthdayapp.data.model.Name
-import com.abilashcse.birthdayapp.data.model.User
-import com.abilashcse.birthdayapp.data.model.formattedDate
+import androidx.navigation.navArgument
+import com.abilashcse.birthdayapp.data.model.*
 import com.abilashcse.birthdayapp.ui.common.LoadingUI
 import com.abilashcse.birthdayapp.ui.common.nameChip
 import com.abilashcse.birthdayapp.ui.randomusers.RandomUserUI
 import com.abilashcse.birthdayapp.ui.theme.BirthdayAppTheme
 import com.abilashcse.birthdayapp.viewmodels.randomuser.RandomUserViewModel
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -57,63 +60,73 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 fun MainApp() {
-    val navController = rememberNavController()
+    var navController = rememberNavController()
     NavHost(navController, startDestination = "user") {
         composable(route = "user") {
-            UserList()
+            UserList(navController = navController)
         }
-        composable(route = "userdata") {
-            RandomUserUI("TeamName")
+        composable(route = "userdata/{user}",
+         arguments = listOf(navArgument("user") {
+             type = NavType.StringType})) {
+                backStackEntry ->
+            RandomUserUI(userJson = backStackEntry.arguments?.getString("user")!!,
+            navController = navController)
         }
     }
 }
 
 @Composable
-fun UserList(viewModel: RandomUserViewModel = hiltViewModel()) {
+fun UserList(viewModel: RandomUserViewModel = hiltViewModel(),
+             navController: NavHostController?) {
     val userList by viewModel.randomUsers.observeAsState(initial = emptyList())
     if (userList.isEmpty()) {
         LoadingUI()
     } else {
-        UserListUI(userList)
+        UserListUI(userList, navController = navController)
     }
     viewModel.getRandomUsers(1000)
 }
 
 @Composable
-private fun UserListUI(userList: List<User>) {
+private fun UserListUI(userList: List<User>, navController: NavHostController?) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = Dp(16f)),
+            .padding(top = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = stringResource(id = R.string.header_title),
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(Dp(16f))
+            modifier = Modifier.padding(16.dp)
         )
-
         LazyColumn() {
             items(userList) { user ->
-                UserRow(user = user)
-                Divider(color = Color.Black, thickness = Dp(1f))
+                UserRow(user = user, navController = navController)
+                Divider(color = Color.Black, thickness = 1.dp)
             }
         }
     }
 }
 
 @Composable
-fun UserRow(user: User) {
-    LazyRow(modifier = Modifier.padding(Dp(8f))) {
+fun UserRow(user: User, navController: NavHostController?) {
+    LazyRow(modifier = Modifier.padding(8.dp)
+        .fillMaxSize()
+        .clickable {
+            navController?.navigate("userdata/${Gson().toJson(user)}")
+        }
+    ) {
         item {
-            Column(modifier = Modifier.padding(Dp(4f))) {
+            Column(modifier = Modifier.padding(4.dp)) {
                 nameChip(user.name)
             }
-            Column(modifier = Modifier.padding(Dp(8f))) {
+            Column(modifier = Modifier.padding(8.dp)) {
                 Text(
-                    text = "${user.name.first} ${user.name.last}",
+                    text = user.name.fullName(),
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )
@@ -141,6 +154,6 @@ fun ComposablePreview() {
     )
     users.add(user1)
     users.add(user2)
-    UserListUI(userList = users)
+    UserListUI(userList = users, navController = null)
 }
 

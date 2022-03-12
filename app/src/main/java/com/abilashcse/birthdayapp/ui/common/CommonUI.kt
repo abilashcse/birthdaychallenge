@@ -13,10 +13,7 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.ExperimentalUnitApi
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
+import androidx.compose.ui.unit.*
 import com.abilashcse.birthdayapp.data.model.Name
 
 @Composable
@@ -30,9 +27,8 @@ fun LoadingUI() {
     }
 }
 
-@OptIn(ExperimentalUnitApi::class)
 @Composable
-fun nameChip(name: Name) {
+fun nameChip(name: Name, textSize: Float = 20f) {
     val initial = name.first.first().uppercase() + name.last?.first()?.uppercase()
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -57,12 +53,19 @@ fun nameChip(name: Name) {
         Text(
             text = initial,
             fontWeight = FontWeight.Bold,
-            fontSize = TextUnit(20f, TextUnitType.Sp),
+            fontSize = textSize.sp,
             textAlign = TextAlign.Center,
             color = Color.White,
             modifier = Modifier
-                .padding(Dp(20f))
-                .defaultMinSize(Dp(20f)) //Use a min size for short text.
+                .padding(textSize.dp)
+                .defaultMinSize(textSize.dp) //Use a min size for short text.
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun InitialPreview() {
+    val name = Name(title = "Mr", first = "User", last = "One")
+    nameChip(name = name, textSize = 40f)
 }
