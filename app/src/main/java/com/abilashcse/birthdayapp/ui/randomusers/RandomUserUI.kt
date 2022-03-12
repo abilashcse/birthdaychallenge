@@ -44,7 +44,7 @@ fun UserDetailsUI(user: User, navController: NavHostController?) {
             nameChip(user.name, textSize = 40f)
         }
         Text(
-            text = user.name.fullName(),
+            text = user.name.fullName,
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
             modifier = Modifier.padding(16.dp)

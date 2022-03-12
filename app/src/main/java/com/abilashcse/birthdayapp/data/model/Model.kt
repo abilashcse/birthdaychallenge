@@ -12,4 +12,6 @@ fun DOB.formattedDate(): String {
     return formatter.format(date)
 }
 
-fun Name.fullName() : String = "$first $last"
+var Name.fullName : String
+    get() = "$first $last"
+    private set(value) {}

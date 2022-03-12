@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -58,6 +59,7 @@ fun nameChip(name: Name, textSize: Float = 20f) {
             color = Color.White,
             modifier = Modifier
                 .padding(textSize.dp)
+                .testTag("initialTag")
                 .defaultMinSize(textSize.dp) //Use a min size for short text.
         )
     }

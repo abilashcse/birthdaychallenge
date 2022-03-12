@@ -5,9 +5,4 @@ import android.util.Log
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class BirthdayApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-        Log.d("Test", "SampleApp main")
-    }
-}
+class BirthdayApplication : Application()

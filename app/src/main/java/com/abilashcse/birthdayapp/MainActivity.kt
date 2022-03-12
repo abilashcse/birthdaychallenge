@@ -126,7 +126,7 @@ fun UserRow(user: User, navController: NavHostController?) {
             }
             Column(modifier = Modifier.padding(8.dp)) {
                 Text(
-                    text = user.name.fullName(),
+                    text = user.name.fullName,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )
