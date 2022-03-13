@@ -25,7 +25,6 @@ class RandomUserViewModel @Inject constructor(var repository: RandomUsersReposit
         repository.getRandomUsers(count, object : APICallback<RandomUserResponse> {
 
             override fun onSuccess(data: RandomUserResponse) {
-                Log.d("Test", "data = ${data.results}")
                 _isViewLoading.value = false
                 if (data.results.isEmpty()) {
                     _isEmptyList.value = true
