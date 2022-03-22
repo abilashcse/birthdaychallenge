@@ -35,3 +35,7 @@ This repository contains a kotlin project based on MVVM architecture.
 * Display upcoming birthdays on a separate section
 * Set a reminder for upcoming birthdays
 * Showing birthday in a calendar so that a user can see the birthdays in each month
+
+## Reference for the seed project
+
+[MindorksOpenSource/Dagger-Hilt-Tutorial](https://github.com/MindorksOpenSource/Dagger-Hilt-Tutorial)
